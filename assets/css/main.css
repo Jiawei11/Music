@@ -1,0 +1,30 @@
+html {
+    background-color: #5599FF;
+}
+
+#header {
+    font-size: 50px;
+    color: white;
+}
+
+#Control {
+    display: flex;
+}
+
+#OrderMusicList {
+    height: 75vh;
+    width: 50vh;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+#NowPlaying {
+    height: 75vh;
+    width: 75vh;
+    border-radius: 5px;
+    border: 1px solid red;
+}
+
+span {
+    margin: 0 auto;
+}
