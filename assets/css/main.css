@@ -1,4 +1,4 @@
-html {
+body {
     background-color: #5599FF;
 }
 
@@ -9,13 +9,16 @@ html {
 
 #Control {
     display: flex;
+    justify-content: center;
+    padding: 10px;
 }
 
 #OrderMusicList {
     height: 75vh;
-    width: 50vh;
+    width: 18rem;
     border-radius: 5px;
     border: 1px solid black;
+    margin: 0 15px 0 0;
 }
 
 #NowPlaying {
@@ -25,6 +28,8 @@ html {
     border: 1px solid red;
 }
 
-span {
-    margin: 0 auto;
+#span {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
 }
