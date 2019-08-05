@@ -22,10 +22,12 @@ window.onload = () => {
                         var order = document.querySelectorAll('.Order');
                         order.forEach((res) => {
                             res.addEventListener('click', () => {
+                                var name = res.name.split('/');
                                 res.setAttribute('disabled','');
                                 source.setAttribute('src',res.name);
                                 music.load();
                                 music.play();                                
+                                document.getElementById('OrderMusicText').innerText = `NowPlaying:  ${name[name.length-1]}`;
 
                                 setInterval(() => {
                                     res.removeAttribute('disabled');
