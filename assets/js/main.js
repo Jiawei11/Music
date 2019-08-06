@@ -4,10 +4,16 @@ window.onload = () => {
     var musicQueue = [];
 
     music.addEventListener('ended', () => {
+        var value = musicQueue.shift()
+        document.getElementById('OrderMusicText').innerText = `NowPlaying:  ${value}`;
+        document.querySelector('#musicQueue').removeChild(document.querySelector('#musicQueue li'));
 
+        if(musicQueue.length == 0){
+            console.log('All Music Queue Empty');
+        }
     })
 
-    fetch('./assets/music/data.php')
+    async = fetch('./assets/music/data.php')
                     .then((res)=> res.json())
                     .then((res)=>{
                         res.forEach((res)=>{
@@ -26,8 +32,17 @@ window.onload = () => {
                                 res.setAttribute('disabled','');
                                 source.setAttribute('src',res.name);
                                 music.load();
-                                music.play();                                
-                                document.getElementById('OrderMusicText').innerText = `NowPlaying:  ${name[name.length-1]}`;
+                                music.play();
+                                if(musicQueue.length == 0){
+                                    document.getElementById('OrderMusicText').innerText = `NowPlaying:  ${name[name.length-1]}`;
+                                }
+
+                                musicQueue.push(name[name.length-1].split('.')[0])
+                                var body = `<li class="list-group-item" style="font-size:30px;">
+                                                ${name[name.length-1].split('.')[0]}
+                                            </li>`;
+
+                                document.querySelector('#NowPlaying ul').innerHTML += body;
 
                                 setInterval(() => {
                                     res.removeAttribute('disabled');
