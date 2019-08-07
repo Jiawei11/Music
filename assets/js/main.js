@@ -4,12 +4,16 @@ window.onload = () => {
     var musicQueue = [];
 
     music.addEventListener('ended', () => {
-        var value = musicQueue.shift()
-        document.getElementById('OrderMusicText').innerText = `NowPlaying:  ${value}`;
-        document.querySelector('#musicQueue').removeChild(document.querySelector('#musicQueue li'));
-
-        if(musicQueue.length == 0){
-            console.log('All Music Queue Empty');
+        if(musicQueue.length != 0){
+            var value = musicQueue.shift()
+            source.setAttribute('src','./assets/mp3/' + value + '.mp3');
+            music.load();
+            music.play();
+            document.getElementById('OrderMusicText').innerText = `NowPlaying:  ${value}`;
+            document.querySelector('#musicQueue').removeChild(document.querySelector('#musicQueue li'));
+        }else{
+            console.log('All Song is Ended');
+            source.setAttribute('src','');
         }
     })
 
@@ -30,14 +34,17 @@ window.onload = () => {
                             res.addEventListener('click', () => {
                                 var name = res.name.split('/');
                                 res.setAttribute('disabled','');
-                                source.setAttribute('src',res.name);
-                                music.load();
-                                music.play();
+
                                 if(musicQueue.length == 0){
+                                    music.load();
+                                    source.setAttribute('src',res.name);
                                     document.getElementById('OrderMusicText').innerText = `NowPlaying:  ${name[name.length-1]}`;
+                                    music.play();
                                 }
 
+
                                 musicQueue.push(name[name.length-1].split('.')[0])
+
                                 var body = `<li class="list-group-item" style="font-size:30px;">
                                                 ${name[name.length-1].split('.')[0]}
                                             </li>`;
@@ -46,7 +53,7 @@ window.onload = () => {
 
                                 setInterval(() => {
                                     res.removeAttribute('disabled');
-                                }, 10000)
+                                }, 1000)
                             })
                         })
                     });
