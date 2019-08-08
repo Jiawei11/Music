@@ -33,6 +33,19 @@ body {
     cursor: pointer;
 }
 
-#music{
+#music {
     width: 40%;
+}
+
+#MainControl {
+    display: flex;
+    justify-content: center
+}
+
+#MusicUploadBtn {
+    margin-left: 10px;
+}
+
+#MusicUpload {
+    display: none;
 }
